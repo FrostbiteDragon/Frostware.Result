@@ -31,13 +31,11 @@ public class Result
      public static Result Fail<T>(T value, string errorMessage = default) => new Fail<T>(value, errorMessage); 
 }
 ```
-Pass can either be empty or contain a value.
+A few things to note here:
 
-Pass\<T> is a Pass, Pass is a Result. 
-This distinction is important for pattern matching.
-
-Fail works the same as Pass but has an added optional error message. 
-
+* Pass can either be empty or contain a value.
+* Pass\<T> is a Pass, Pass is a Result. This distinction is important for pattern matching.
+* Fail works the same as Pass but has an added optional error message.
 
 
 ## Method Decleration
@@ -45,13 +43,19 @@ Simply make your method return the type "Result" and use the static helper metho
 ```cs
 public Result ExampleMethod()
 {
-     return Result.Pass(20); //returns Pass<int> { Value = 20 }
-     return Result.Pass(); //returns Pass {}
-     return Result.Fail(30, "Oporation Failed"); //returns Fail { Value = 30, ErrorMessage = "Oporation Failed" }
-     return Result.Fail(new Foo()); //returns Fail { Value = Foo {}, ErrorMessage = "" }
-     return Result.Fail(); //returns Fail {ErrorMessage = ""}
+     if (condition1)
+         return Result.Pass(20); //returns Pass<int> { Value = 20 }
+     else if (condition2)
+         return Result.Pass(); //returns Pass {}
+     else if (condition3)
+         return Result.Fail(30, "Oporation Failed"); //returns Fail<Int> { Value = 30, ErrorMessage = "Oporation Failed" }
+     else if (condition4)
+         return Result.Fail(new Foo()); //returns Fail<Foo> { Value = Foo {}, ErrorMessage = "" }
+     else
+         return Result.Fail(); //returns Fail {ErrorMessage = ""}
 }
 ```
+You may of noticed that we are returning both a Fail\<int> and a Fail\<Foo>. You can do that! Since you should be handling all possible states of your result this won't be a problem at all. Just make sure your method's summery is clear about how it works and what it may return.
 
 ## Result Handling
 It is recomended to pattern match over the result, either with a switch statement,
