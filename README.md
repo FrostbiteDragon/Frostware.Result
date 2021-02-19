@@ -44,7 +44,7 @@ Simply make your method return the type "Result" and use the static helper metho
 /// <summary>
 /// Example Method
 /// </summary>
-/// <returns>Pass : int, Fail : int, Fail : foo;</returns>
+/// <returns>Pass : int, Fail : int, Fail : foo</returns>
 public Result ExampleMethod()
 {
      if (condition1)
