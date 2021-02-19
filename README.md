@@ -1,25 +1,42 @@
 # Frostware.Result
+
 A simple implementation of a functional result type in C#
 
 ## Table of contents
-* [Why use a result type](#why-use-a-result-type)
+* [What is a result type, and why use it](#what-is-a-result-type-and-why-use-it)
 * [How to use](#how-to-use)
 
 
-# Why use a result type?
+# What is a result type, and why use it?
+
+The result type is an alternative to a try/catch that aims to remove the need for nulls and force handling of failed cases.
+
+By having your methods return Result, it allows you to pattern match (switch) over that result at execution. You can then supply an implementation for every possible state of your method.
 
 # How to use
 
+This is the main result class:
 ```cs
 public class Result
 {
-     public static Result Pass() => new Pass();
-     public static Result Pass<T>(T value) => new Pass<T>(value);
-
-     public static Result Fail(string errorMessage = "") => new Fail(errorMessage);
-     public static Result Fail<T>(T value, string errorMessage = default) => new Fail<T>(value, errorMessage);
+     // Pass inherits Result
+     public static Result Pass() => new Pass(); 
+     // Pass<T> inherits Pass
+     public static Result Pass<T>(T value) => new Pass<T>(value); 
+     
+     //Fail inherits Result
+     public static Result Fail(string errorMessage = "") => new Fail(errorMessage); 
+     //Fail<T> inherits Fail
+     public static Result Fail<T>(T value, string errorMessage = default) => new Fail<T>(value, errorMessage); 
 }
 ```
+Pass can either be empty or contain a value.
+
+Pass<T> is a Pass, Pass is a Result. 
+This distinction is important for when you pattern match.
+
+Fail works the same as Pass but has an added optional error message. 
+
 To use, simply make your method return the type "Result" and use one of the above static methods.
 ```cs
 public Result ExampleMethod()
