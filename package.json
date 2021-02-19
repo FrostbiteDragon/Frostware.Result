@@ -3,10 +3,5 @@
   "version": "1.0.0",
   "displayName": "Frostware.Result",
   "description": "A simple implementation of a functional result type in C#",
-  "unity": "2018.4",
- "keywords": [
-    "result",
-    "functional-programming"
-  ],
   "author": "Cameron Proulx (FrostbiteDragon)"
 }
