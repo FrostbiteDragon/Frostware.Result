@@ -41,6 +41,10 @@ A few things to note here:
 ## Method Decleration
 Simply make your method return the type "Result" and use the static helper methods on the Result class.
 ```cs
+/// <summary>
+/// Example Method
+/// </summary>
+/// <returns>Pass : int, Fail : int, Fail : foo;</returns>
 public Result ExampleMethod()
 {
      if (condition1)
@@ -55,7 +59,8 @@ public Result ExampleMethod()
          return Result.Fail(); //returns Fail {ErrorMessage = ""}
 }
 ```
-You may of noticed that we are returning both a Fail\<int> and a Fail\<Foo>. You can do that! Since you should be handling all possible states of your result this won't be a problem at all. Just make sure your method's summery is clear about how it works and what it may return.
+You may of noticed that we are returning both a Fail\<int> and a Fail\<Foo>. You can do that! Since you should be handling all possible states of your result this won't be a problem at all. Just make sure your method's summery is clear about how it works and what it may return. See the \<returns /> tag for an example
+
 
 ## Result Handling
 It is recomended to pattern match over the result, either with a switch statement,
