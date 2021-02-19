@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Cameron Proulx (FrostbiteDragon)</Authors>
     <PackageProjectUrl>https://github.com/FrostbiteDragon/Frostware.Result</PackageProjectUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <RepositoryUrl>https://github.com/FrostbiteDragon/Frostware.Result</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>A simple implementation of a functional result type in C#</Description>
     <Company></Company>
