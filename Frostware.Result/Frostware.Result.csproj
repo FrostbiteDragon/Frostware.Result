@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Cameron Proulx (FrostbiteDragon)</Authors>
+    <PackageProjectUrl>https://github.com/FrostbiteDragon/Frostware.Result</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>A simple implementation of a functional result type in C#</Description>
+    <Company></Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>result, functional-programming</PackageTags>
   </PropertyGroup>
 
 </Project>
