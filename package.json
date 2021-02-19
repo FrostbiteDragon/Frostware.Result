@@ -5,9 +5,4 @@
   "description": "A simple implementation of a functional result type in C#",
   "unity": "2018.4",
   "author": "Cameron Proulx (FrostbiteDragon)",
-  "keywords": [
-    "result",
-    "functional-programming"
-  ],
-   
 }
