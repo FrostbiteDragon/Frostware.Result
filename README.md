@@ -5,7 +5,8 @@ A simple implementation of a functional result type in C#
 ## Table of contents
 * [What is a result type, and why use it](#what-is-a-result-type-and-why-use-it)
 * [How to use](#how-to-use)
-
+     * [Method Decleration](#method-decleration)
+     * [Result Handling](#result-handling)
 
 # What is a result type, and why use it?
 
@@ -33,22 +34,27 @@ public class Result
 Pass can either be empty or contain a value.
 
 Pass\<T> is a Pass, Pass is a Result. 
-This distinction is important for when you pattern match.
+This distinction is important for pattern matching.
 
 Fail works the same as Pass but has an added optional error message. 
 
 
-To use, simply make your method return the type "Result" and use one of the above static methods.
+
+## Method Decleration
+Simply make your method return the type "Result" and use the static helper methods on the Result class.
 ```cs
 public Result ExampleMethod()
 {
      return Result.Pass(20); //returns Pass<int> { Value = 20 }
      return Result.Pass(); //returns Pass {}
+     return Result.Fail(30, "Oporation Failed"); //returns Fail { Value = 30, ErrorMessage = "Oporation Failed" }
      return Result.Fail(new Foo()); //returns Fail { Value = Foo {}, ErrorMessage = "" }
      return Result.Fail(); //returns Fail {ErrorMessage = ""}
 }
 ```
-It is recomended to switch over the result, either with a switch statement,
+
+## Result Handling
+It is recomended to pattern match over the result, either with a switch statement,
 
 ```cs
 switch(ExampleMethod())
@@ -61,7 +67,7 @@ switch(ExampleMethod())
          //triggered when result is a pass and contains a value of Foo
          break;
  
-     case Pass _:
+     case Pass _: //you can ommit the "_" as of .NET 5
          //triggered when result is a pass of any type
          break;
  
@@ -74,7 +80,7 @@ switch(ExampleMethod())
          //triggered when result is a fail and contains a value of Foo
          break;
  
-     case Fail _:
+     case Fail _: //you can ommit the "_" as of .NET 5
          //triggered when result is a fail of any type
          break;
 }
@@ -93,3 +99,4 @@ string result = ExampleMethod() switch
      Fail x => $"This failed with message {x.ErrorMessage}"
 }
 ```
+Note that if you check for Pass before Pass\<int> the compiler will throw an error stating that the pattern or case has already been handled. This is do to Pass\<int> being a Pass. This is intentional, it means that if you just want to check if an oporation passed and don't care about the value, you can just check for Pass. Same applies to Fail.
