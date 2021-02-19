@@ -32,10 +32,11 @@ public class Result
 ```
 Pass can either be empty or contain a value.
 
-Pass<T> is a Pass, Pass is a Result. 
+Pass\<T> is a Pass, Pass is a Result. 
 This distinction is important for when you pattern match.
 
 Fail works the same as Pass but has an added optional error message. 
+
 
 To use, simply make your method return the type "Result" and use one of the above static methods.
 ```cs
