@@ -1,5 +1,5 @@
 {
-  "name": "Frostware.Result",
+  "name": "frostware.result",
   "version": "1.0.0",
   "displayName": "Frostware.Result",
   "description": "A simple implementation of a functional result type in C#",
