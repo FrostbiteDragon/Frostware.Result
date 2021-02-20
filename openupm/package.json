@@ -1,6 +1,6 @@
 {
   "name": "com.frostware.result",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "displayName": "Frostware.Result",
   "description": "A simple implementation of a functional result type in C#",
   "author": "Cameron Proulx (FrostbiteDragon)"
