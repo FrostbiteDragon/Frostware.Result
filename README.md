@@ -1,4 +1,6 @@
 # Frostware.Result
+[![nuget](https://img.shields.io/nuget/v/Frostware.Result?style=flat-square)](https://www.nuget.org/packages/Frostware.Result/)
+[![openupm](https://img.shields.io/npm/v/com.frostware.result?label=openupm&registry_uri=https://package.openupm.com&style=flat-square)](https://openupm.com/packages/com.frostware.result/)
 
 A simple implementation of a functional result type in C#
 
