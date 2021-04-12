@@ -7,7 +7,7 @@ A simple implementation of a functional result type in C#
 ## Table of contents
 * [What is a result type, and why use it](#what-is-a-result-type-and-why-use-it)
 * [How to use](#how-to-use)
-     * [Method Decleration](#method-decleration)
+     * [Method Declaration](#method-declaration)
      * [Result Handling](#result-handling)
 
 # What is a result type, and why use it?
@@ -27,9 +27,9 @@ public class Result
      // Pass<T> inherits Pass
      public static Result Pass<T>(T value) => new Pass<T>(value); 
      
-     //Fail inherits Result
+     // Fail inherits Result
      public static Result Fail(string errorMessage = "") => new Fail(errorMessage); 
-     //Fail<T> inherits Fail
+     // Fail<T> inherits Fail
      public static Result Fail<T>(T value, string errorMessage = default) => new Fail<T>(value, errorMessage); 
 }
 ```
@@ -40,7 +40,7 @@ A few things to note here:
 * Fail works the same as Pass but has an added optional error message.
 
 
-## Method Decleration
+## Method Declaration
 Simply make your method return the type "Result" and use the static helper methods on the Result class.
 ```cs
 /// <summary>
@@ -54,18 +54,18 @@ public Result ExampleMethod()
      else if (condition2)
          return Result.Pass(); //returns Pass {}
      else if (condition3)
-         return Result.Fail(30, "Oporation Failed"); //returns Fail<Int> { Value = 30, ErrorMessage = "Oporation Failed" }
+         return Result.Fail(30, "Operation Failed"); //returns Fail<Int> { Value = 30, ErrorMessage = "Operation Failed" }
      else if (condition4)
          return Result.Fail(new Foo()); //returns Fail<Foo> { Value = Foo {}, ErrorMessage = "" }
      else
          return Result.Fail(); //returns Fail {ErrorMessage = ""}
 }
 ```
-You may of noticed that we are returning both a Fail\<int> and a Fail\<Foo>. You can do that! Since you should be handling all possible states of your result this won't be a problem at all. Just make sure your method's summery is clear about how it works and what it may return. See the \<returns /> tag for an example
+You may have noticed that we are returning both a Fail\<int> and a Fail\<Foo>. You can do that! Since you should be handling all possible states of your result this won't be a problem at all. Just make sure your method's summary is clear about how it works and what it may return. See the \<returns /> tag for an example.
 
 
 ## Result Handling
-It is recomended to pattern match over the result, either with a switch statement,
+It is recommended to pattern match over the result, either with a switch statement,
 
 ```cs
 switch(ExampleMethod())
@@ -78,7 +78,7 @@ switch(ExampleMethod())
          //triggered when result is a pass and contains a value of Foo
          break;
  
-     case Pass _: //you can ommit the "_" as of .NET 5
+     case Pass _: //you can omit the "_" as of .NET 5
          //triggered when result is a pass of any type
          break;
  
@@ -91,7 +91,7 @@ switch(ExampleMethod())
          //triggered when result is a fail and contains a value of Foo
          break;
  
-     case Fail _: //you can ommit the "_" as of .NET 5
+     case Fail _: //you can omit the "_" as of .NET 5
          //triggered when result is a fail of any type
          break;
 }
@@ -110,4 +110,4 @@ string result = ExampleMethod() switch
      Fail x => $"This failed with message {x.ErrorMessage}"
 }
 ```
-Note that if you check for Pass before Pass\<int> the compiler will throw an error stating that the pattern or case has already been handled. This is do to Pass\<int> being a Pass. This is intentional, it means that if you just want to check if an oporation passed and don't care about the value, you can just check for Pass. Same applies to Fail.
+Note that if you check for Pass before Pass\<int> the compiler will throw an error stating that the pattern or case has already been handled. This is due to Pass\<int> being a Pass. This is intentional, it means that if you just want to check if an operation passed and don't care about the value, you can just check for Pass. Same applies to Fail.
