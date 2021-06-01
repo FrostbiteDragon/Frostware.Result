@@ -65,6 +65,7 @@ You may have noticed that we are returning both a Fail\<int> and a Fail\<Foo>. Y
 
 
 ## Result Handling
+
 It is recommended to pattern match over the result, either with a switch statement,
 
 ```cs
@@ -111,3 +112,9 @@ string result = ExampleMethod() switch
 }
 ```
 Note that if you check for Pass before Pass\<int> the compiler will throw an error stating that the pattern or case has already been handled. This is due to Pass\<int> being a Pass. This is intentional, it means that if you just want to check if an operation passed and don't care about the value, you can just check for Pass. Same applies to Fail.
+
+Alternatively, you could use a decleration pattern. This is recomended when you only need to check 1 or 2 cases
+```cs
+if (ExampleMethod() is Pass<int> integer)
+    Console.Writeline(integer.Value + 3)
+```
